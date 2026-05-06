@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { shoes } from '../database/shoes';
+import Link from 'next/link';
+import { shoes } from '../../database/shoes';
 
 export const metadata = {
   title: 'Home',
@@ -8,26 +9,23 @@ export const metadata = {
 
 
 
-export default function Home() {
+export default function ProductsPage() {
   return (
-    <div><
-      h1>This is the home page</h1>
+    <div>
+
 
       {shoes.map((shoe) => (
-        <div key={`shoe-${shoe.id}`}>
+        <Link key={`shoe-${shoe.id}`} href={`/products/${shoe.id}`}>
           <h2>{shoe.name}</h2>
-          <p>${shoe.price.toFixed(2)}</p>
+          <p>${shoe.price}</p>
           <Image
             src={`/shoes/shoes${shoe.id}.jpg`}
             alt={shoe.name}
             width={200}
-            height={200}
-          />
-
-        </div>
+            height={200}/>
+        </Link>
       ))}
-    
-    </div>
+          </div>);
 
-  );
+
 }
